@@ -12,5 +12,7 @@ A small Python module that maps credit scores to bands, checks loan eligibility 
 |------|-------------|
 | `loan_eligibility.py` | The module under test |
 | `test_loan_eligibility.py` | Starter test file |
+| `CodeCoverageTest_155_loan_eligibility.py` | Tests used for line/code coverage |
+| `BranchCoverageTest_155_loan_eligibility.py` | Tests used for branch coverage |
 
 Refer to the lab handout for instructions.
