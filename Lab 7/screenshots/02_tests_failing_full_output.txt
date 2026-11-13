@@ -1,0 +1,280 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.13.0, pytest-9.2.0, pluggy-1.7.0
+rootdir: C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7
+plugins: hypothesis-6.170.15, platformdirs-4.13.0
+collected 8 items
+
+test_loan_eligibility.py F.FFFFF.                                        [100%]
+
+================================== FAILURES ===================================
+_________________________ test_parse_income_no_crash __________________________
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 8, in test_parse_income_no_crash
+  |     def test_parse_income_no_crash(s):
+  |                    ^^^
+  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 10, in test_parse_income_no_crash
+    |     parse_income(s)
+    |     ~~~~~~~~~~~~^^^
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\loan_eligibility.py", line 4, in parse_income
+    |     return int(income.replace(',', ''))
+    | ValueError: invalid literal for int() with base 10: ''
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 12, in test_parse_income_no_crash
+    |     assert False, f"parse_income crashed with: {e!r}"
+    | AssertionError: parse_income crashed with: ValueError("invalid literal for int() with base 10: ''")
+    | assert False
+    | Failing test case: test_parse_income_no_crash(
+    |     s='',
+    | )
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 10, in test_parse_income_no_crash
+    |     parse_income(s)
+    |     ~~~~~~~~~~~~^^^
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\loan_eligibility.py", line 4, in parse_income
+    |     return int(income.replace(',', ''))
+    |                ^^^^^^^^^^^^^^
+    | AttributeError: 'NoneType' object has no attribute 'replace'
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 12, in test_parse_income_no_crash
+    |     assert False, f"parse_income crashed with: {e!r}"
+    | AssertionError: parse_income crashed with: AttributeError("'NoneType' object has no attribute 'replace'")
+    | assert False
+    | Failing test case: test_parse_income_no_crash(
+    |     s=None,
+    | )
+    +------------------------------------
+_____________________ test_parse_income_rejects_negative ______________________
+
+    @given(st.integers(max_value=-1))
+>   def test_parse_income_rejects_negative(n):
+                   ^^^
+
+test_loan_eligibility.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+n = -1
+
+    @given(st.integers(max_value=-1))
+    def test_parse_income_rejects_negative(n):
+>       assert parse_income(str(n)) is None
+E       AssertionError: assert -1 is None
+E        +  where -1 = parse_income('-1')
+E        +    where '-1' = str(-1)
+E       Failing test case: test_parse_income_rejects_negative(
+E           n=-1,
+E       )
+
+test_loan_eligibility.py:23: AssertionError
+__________________________ test_monthly_emi_no_crash __________________________
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 29, in test_monthly_emi_no_crash
+  |     def test_monthly_emi_no_crash(s):
+  |                    ^^^
+  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 31, in test_monthly_emi_no_crash
+    |     monthly_emi(s)
+    |     ~~~~~~~~~~~^^^
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\loan_eligibility.py", line 7, in monthly_emi
+    |     principal, rate, years = details.split(',')
+    |     ^^^^^^^^^^^^^^^^^^^^^^
+    | ValueError: not enough values to unpack (expected 3, got 1)
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 33, in test_monthly_emi_no_crash
+    |     assert False, f"monthly_emi crashed with: {e!r}"
+    | AssertionError: monthly_emi crashed with: ValueError('not enough values to unpack (expected 3, got 1)')
+    | assert False
+    | Failing test case: test_monthly_emi_no_crash(
+    |     s='',
+    | )
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 31, in test_monthly_emi_no_crash
+    |     monthly_emi(s)
+    |     ~~~~~~~~~~~^^^
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\loan_eligibility.py", line 7, in monthly_emi
+    |     principal, rate, years = details.split(',')
+    |                              ^^^^^^^^^^^^^
+    | AttributeError: 'NoneType' object has no attribute 'split'
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 33, in test_monthly_emi_no_crash
+    |     assert False, f"monthly_emi crashed with: {e!r}"
+    | AssertionError: monthly_emi crashed with: AttributeError("'NoneType' object has no attribute 'split'")
+    | assert False
+    | Failing test case: test_monthly_emi_no_crash(
+    |     s=None,
+    | )
+    +------------------------------------
+______________________ test_monthly_emi_numeric_no_crash ______________________
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 37, in test_monthly_emi_numeric_no_crash
+  |     @given(st.integers(), st.integers(), st.integers())
+  |                    ^^^
+  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 41, in test_monthly_emi_numeric_no_crash
+    |     monthly_emi(f"{principal},{rate},{years}")
+    |     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\loan_eligibility.py", line 10, in monthly_emi
+    |     return round(int(principal) * r * (1 + r) ** n / ((1 + r) ** n - 1), 2)
+    |                                       ~~~~~~~~^^~~
+    | OverflowError: (34, 'Result too large')
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 43, in test_monthly_emi_numeric_no_crash
+    |     assert False, f"monthly_emi crashed with: {e!r}"
+    | AssertionError: monthly_emi crashed with: OverflowError(34, 'Result too large')
+    | assert False
+    | Failing test case: test_monthly_emi_numeric_no_crash(
+    |     principal=0,
+    |     rate=-96,
+    |     years=-710,
+    | )
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 41, in test_monthly_emi_numeric_no_crash
+    |     monthly_emi(f"{principal},{rate},{years}")
+    |     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\loan_eligibility.py", line 10, in monthly_emi
+    |     return round(int(principal) * r * (1 + r) ** n / ((1 + r) ** n - 1), 2)
+    |                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+    | ZeroDivisionError: float division by zero
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 43, in test_monthly_emi_numeric_no_crash
+    |     assert False, f"monthly_emi crashed with: {e!r}"
+    | AssertionError: monthly_emi crashed with: ZeroDivisionError('float division by zero')
+    | assert False
+    | Failing test case: test_monthly_emi_numeric_no_crash(
+    |     principal=0,
+    |     rate=0,
+    |     years=0,
+    | )
+    +------------------------------------
+________________________ test_monthly_emi_valid_input _________________________
+
+    @given(st.integers(min_value=1000, max_value=10**8),
+>          st.integers(min_value=0, max_value=50),
+                   ^^^
+           st.integers(min_value=1, max_value=30))
+
+test_loan_eligibility.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+test_loan_eligibility.py:50: in test_monthly_emi_valid_input
+    emi = monthly_emi(f"{principal},{rate},{years}")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+details = '1000,0,1'
+
+    def monthly_emi(details):
+        principal, rate, years = details.split(',')
+        r = int(rate) / 1200
+        n = int(years) * 12
+>       return round(int(principal) * r * (1 + r) ** n / ((1 + r) ** n - 1), 2)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ZeroDivisionError: float division by zero
+E       Failing test case: test_monthly_emi_valid_input(
+E           principal=1000,
+E           rate=0,
+E           years=1,
+E       )
+
+loan_eligibility.py:10: ZeroDivisionError
+_________________________ test_pan_category_no_crash __________________________
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 62, in test_pan_category_no_crash
+  |     def test_pan_category_no_crash(s):
+  |                    ^^^
+  | ExceptionGroup: Hypothesis found 3 distinct failures. (3 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 64, in test_pan_category_no_crash
+    |     pan_category(s)
+    |     ~~~~~~~~~~~~^^^
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\loan_eligibility.py", line 13, in pan_category
+    |     return CATEGORIES[pan[3].upper()]
+    |            ~~~~~~~~~~^^^^^^^^^^^^^^^^
+    | KeyError: '0'
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 66, in test_pan_category_no_crash
+    |     assert False, f"pan_category crashed with: {e!r}"
+    | AssertionError: pan_category crashed with: KeyError('0')
+    | assert False
+    | Failing test case: test_pan_category_no_crash(
+    |     s='0000',
+    | )
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 64, in test_pan_category_no_crash
+    |     pan_category(s)
+    |     ~~~~~~~~~~~~^^^
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\loan_eligibility.py", line 13, in pan_category
+    |     return CATEGORIES[pan[3].upper()]
+    |                       ~~~^^^
+    | IndexError: string index out of range
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 66, in test_pan_category_no_crash
+    |     assert False, f"pan_category crashed with: {e!r}"
+    | AssertionError: pan_category crashed with: IndexError('string index out of range')
+    | assert False
+    | Failing test case: test_pan_category_no_crash(
+    |     s='',
+    | )
+    +---------------- 3 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 64, in test_pan_category_no_crash
+    |     pan_category(s)
+    |     ~~~~~~~~~~~~^^^
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\loan_eligibility.py", line 13, in pan_category
+    |     return CATEGORIES[pan[3].upper()]
+    |                       ~~~^^^
+    | TypeError: 'NoneType' object is not subscriptable
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "C:\Users\dhanu\Desktop\SEM 5\SE\SE LAB\PES2UG24CS155_L6_L7_26_loan_eligibility\Lab 7\test_loan_eligibility.py", line 66, in test_pan_category_no_crash
+    |     assert False, f"pan_category crashed with: {e!r}"
+    | AssertionError: pan_category crashed with: TypeError("'NoneType' object is not subscriptable")
+    | assert False
+    | Failing test case: test_pan_category_no_crash(
+    |     s=None,
+    | )
+    +------------------------------------
+=========================== short test summary info ===========================
+FAILED test_loan_eligibility.py::test_parse_income_no_crash - ExceptionGroup:...
+FAILED test_loan_eligibility.py::test_parse_income_rejects_negative - Asserti...
+FAILED test_loan_eligibility.py::test_monthly_emi_no_crash - ExceptionGroup: ...
+FAILED test_loan_eligibility.py::test_monthly_emi_numeric_no_crash - Exceptio...
+FAILED test_loan_eligibility.py::test_monthly_emi_valid_input - ZeroDivisionE...
+FAILED test_loan_eligibility.py::test_pan_category_no_crash - ExceptionGroup:...
+========================= 6 failed, 2 passed in 1.89s =========================
